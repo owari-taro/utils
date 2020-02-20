@@ -25,6 +25,10 @@ class Person:
 
     def __bool__(self):
         return bool(self.__weight)
+
+    def __call__(self):
+        """"with call,you can youse insntance like ordinary function"""
+        return self.__weight*self.__height
     
   
 
@@ -34,3 +38,4 @@ if __name__ == "__main__":
     print(person.property_test)
     person.weight = 120
     print(person.weight)
+
