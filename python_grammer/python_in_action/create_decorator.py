@@ -1,4 +1,6 @@
 from functools import wraps
+import time
+
 
 def decol(f):
     print("decol colled")
@@ -11,10 +13,22 @@ def decol(f):
     return wrapper
 
 
+def elapsed_time(func):
+    """used as decorator to display elapsed time"""
+    @wraps(func)
+    def new_function(*args, **kwargs):
+        start = time.time()
+        print("running fuction", func.__name__)
+        res = func(*args, **kwargs)
+        print("elapset time:",time.time()-start)
+        return res
+    return new_function
+
+
 def document_it(func):
     """you can try this for debugging by decorator"""
     @wraps(func)
-    #↑whithout this,decorated function's name is recognized as 'new_function'
+    # ↑whithout this,decorated function's name is recognized as 'new_function'
     def new_function(*args, **kwargs):
         print("running fuction", func.__name__)
         print("positinal arguments", args)
@@ -25,12 +39,13 @@ def document_it(func):
     return new_function
 
 
-@document_it
+@elapsed_time
+# document_it
 def add_ints(a, b):
     return a+b
 
 
-@decol
+# @decol
 # functional decorator ,decol get func as an argument and //////
 def func():
     print("exec")
