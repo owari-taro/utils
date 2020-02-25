@@ -3,7 +3,7 @@ import time
 import os
 
 
-def elapsed_time(f: function):
+def elapsed_time(f):
     def wrapper(*args, **kwargs):
         st = time.time()
         v = f(*args, **kwargs)
@@ -14,10 +14,10 @@ def elapsed_time(f: function):
 
 
 def fib(n: int) -> int:
-    if n == 1:
-        return 1
-    if n == 0:
-        return 0
+    if n < 0:
+        raise ValueError("n must not be negative")
+    if n == 1 or n == 0:
+        return n
     return fib(n-1)+fib(n-2)
 
 # TODO:write recursive ver
@@ -25,6 +25,8 @@ def fib(n: int) -> int:
 
 def fibonacci(n: int) -> int:
     """fibonacci:a(n)=a(n-1)+a(n-2)"""
+    if n < 0:
+        raise ValueError("n must not be negative")
     a, b = 0, 1
     for _ in range(n):
         a, b = b, b+a
