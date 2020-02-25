@@ -1,5 +1,16 @@
 import sys
 import time
+import os
+
+
+def elapsed_time(f: function):
+    def wrapper(*args, **kwargs):
+        st = time.time()
+        v = f(*args, **kwargs)
+        print(f"{f.__name__}")
+        print(time.time()-st)
+        return v
+    return wrapper
 
 
 def fib(n: int) -> int:
@@ -21,9 +32,20 @@ def fibonacci(n: int) -> int:
         return a
 
 
-#def main():
+def get_sequential(nums: int):
+    for num in nums:
+        print(fibonacci(num))
+
+
+def main():
+    n = int(sys.argv[1])
+    nums = [n]*os.cpu_count()
+    get_sequential(nums)
+
+
+# def main():
    # n = int(sys.argv[1])
-    #print(fibonacci(n))
+    # print(fibonacci(n))
 
 
 if __name__ == "__main__":
