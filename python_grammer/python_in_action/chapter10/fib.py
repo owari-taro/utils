@@ -1,6 +1,8 @@
 import sys
+from typing import List
 import time
 import os
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 
 def elapsed_time(f):
@@ -14,6 +16,8 @@ def elapsed_time(f):
 
 
 def fib(n: int) -> int:
+    """recursive version
+    """
     if n < 0:
         raise ValueError("n must not be negative")
     if n == 1 or n == 0:
@@ -34,23 +38,34 @@ def fibonacci(n: int) -> int:
         return a
 
 
-def get_sequential(nums: int):
+@elapsed_time
+def get_sequential(nums: List[int]):
     for num in nums:
+        # beter to use cash for fuction fib?
         print(fibonacci(num))
 
 
+@elapsed_time
+def get_multi_thread(nums):
+    with ThreadPoolExecutor()as e:
+        futures = [e.submit(fibonacci, num)for num in nums]
+    for futures in as_completed(futures):
+        print(futures.result())
+
+
 def main():
-    n = int(sys.argv[1])
+    import time
+    n = 100000
     nums = [n]*os.cpu_count()
-    get_sequential(nums)
+    print(nums)
+    # get_sequential(nums)
+    get_multi_thread(nums)
 
 
 # def main():
    # n = int(sys.argv[1])
     # print(fibonacci(n))
-
-
 if __name__ == "__main__":
- #   main()
     print(fib(3))
     print(fib(10))
+    main()
