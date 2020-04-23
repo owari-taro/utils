@@ -15,9 +15,9 @@ def lambda_handler(event, context):
     queue = sqs.get_queue_by_name(QueueName=QUEUENAME)
 
     for rec in event["Records"]:
-        backet_name=rec["s3"]["bucket"]["name"]
-        filename=rec["s3"]["object"]["key"]
-
-        response=table.query(IndexName="haserror-index",KeyConditionExpression=Key("haserror").eq(0))
-
+        backet_name = rec["s3"]["bucket"]["name"]
+        filename = rec["s3"]["object"]["key"]
+        #select records from dynamodb ,using secondary index
+        response = table.query(IndexName="haserror-index",
+                               KeyConditionExpression=Key("haserror").eq(0))
 
