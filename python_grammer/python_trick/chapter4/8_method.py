@@ -13,18 +13,25 @@ class MyClass:
     def __repr__(self):
         return f"{self.__class__.__name__}()"
 
+
 class Piza:
-    def __init__(self, ingredients):
+    def __init__(self, radius, ingredients):
         self.ingredients = ingredients
+        self.radius = radius
 
-@classmethod
-def margherita(cls):
-    return 
+    @classmethod
+    def margherita(cls):
+        return cls(1, ["tomatoes", "mozzarella"])
 
+    @staticmethod
+    def circle_area(r):
+        return r**2**math.pi
+
+    def area(self):
+        return self.circle_area(self.r)
 
     def __repr__(self):
-        return f"Pizza({self.ingredients})"
-
+        return f"{self.__class__.__name__}({self.ingredients!r})"
 
 if __name__ == "__main__":
     obj=MyClass()
