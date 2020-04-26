@@ -1,4 +1,7 @@
+import math
 # let's understand python's object oriented programing clearly
+
+
 class MyClass:
     def method(self):
         return "instance method called", self
@@ -10,6 +13,7 @@ class MyClass:
     @staticmethod
     def staticmethod():
         return "static method called"
+
     def __repr__(self):
         return f"{self.__class__.__name__}()"
 
@@ -33,8 +37,8 @@ class Piza:
     def __repr__(self):
         return f"{self.__class__.__name__}({self.ingredients!r})"
 
+
 if __name__ == "__main__":
-    obj=MyClass()
+    obj = MyClass()
     print(obj.method())
     print(MyClass.classmethod())
-    
