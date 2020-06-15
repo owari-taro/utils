@@ -1,0 +1,10 @@
+page1:
+  name: login_page
+  url:  hogehoge.com
+  actions:
+    # typeはinput,click,selectのいずれかにしてください!それ以外だとerror出ます
+    - type: input 
+      # inputはまとめてdictionaryにする
+      selector: {"#mailaddress":"hoge@gmail.com","#password":"hogehoge"}
+    - type: click
+      selector: "hogehoge"
