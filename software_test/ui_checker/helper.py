@@ -1,6 +1,9 @@
+import requests
 from enum import Enum
 from typing import Dict
 import yaml
+TOKEN = ""
+CHANNEL_ID = ""
 
 
 class Browser(Enum):
@@ -22,8 +25,16 @@ def load_yaml(fname: str) -> Dict:
         return obj
 
 
+def upload_image(fname: str, token: str = TOKEN, channel_id: str = CHANNEL_ID) -> None:
+    files = {'file': open(fname, 'rb')}
+    param = {'token': token, 'channels': channel_id}
+    res = requests.post(
+        url="https://slack.com/api/files.upload", params=param, files=files)
+    print(res)
+
+
 if __name__ == "__main__":
     print("click")
     print(Action.INPUT)
     hoge = load_yaml("hoge.yaml")
-    print(hoge["page2"]["url"])
+    print(hoge["page2"]["url"] is None)
