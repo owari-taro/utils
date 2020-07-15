@@ -1,10 +1,11 @@
 import attr
-from typing import Iterable  # E,List,Union
+from typing import Iterable,List  # E,List,Union
 
 
 @attr.s
 class ReadVisit:
     file_path: str = attr.ib(default="item31_data.txt")
+
     def __iter__(self):
         print("__iter__ is called")
         print(self.file_path)
@@ -13,7 +14,7 @@ class ReadVisit:
                 yield int(line)
 
 
-def normalize(numbers: Iterable):
+def normalize(numbers: Iterable)->List:
     total = sum(numbers)
     result = []
     for value in numbers:
@@ -24,7 +25,7 @@ def normalize(numbers: Iterable):
 
 if __name__ == "__main__":
     hoge = ReadVisit()
-    #for ele in hoge:
-     #   print(ele)
-    res=normalize(hoge)
+    # for ele in hoge:
+    #   print(ele)
+    res = normalize(hoge)
     print(res)
