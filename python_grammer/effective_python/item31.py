@@ -1,10 +1,11 @@
 import attr
-from typing import Iterable,List  # E,List,Union
+from typing import Iterable, List  # E,List,Union
+FILE_PATH = "item31_data.txt"
 
 
 @attr.s
 class ReadVisit:
-    file_path: str = attr.ib(default="item31_data.txt")
+    file_path: str = attr.ib(default=FILE_PATH)
 
     def __iter__(self):
         print("__iter__ is called")
@@ -14,7 +15,7 @@ class ReadVisit:
                 yield int(line)
 
 
-def normalize(numbers: Iterable)->List:
+def normalize(numbers: Iterable) -> List:
     total = sum(numbers)
     result = []
     for value in numbers:
@@ -22,10 +23,18 @@ def normalize(numbers: Iterable)->List:
         result.append(percent)
     return result
 
+def read_visits(file_path=FILE_PATH):
+    with open(file_path, "r", encoding="utf-8")as reader:
+        for line in reader:
+            yield int(line)
+
 
 if __name__ == "__main__":
     hoge = ReadVisit()
+    print(iter(hoge) is hoge)
+    tmp=read_visits()
+    print(iter(tmp) is tmp)
     # for ele in hoge:
     #   print(ele)
-    res = normalize(hoge)
-    print(res)
+    #res = normalize(hoge)
+    # print(res)
