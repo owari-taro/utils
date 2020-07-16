@@ -25,7 +25,7 @@ def load_yaml(fname: str) -> Dict:
         return obj
 
 
-def upload_image(fname: str, token: str = TOKEN, channel_id: str = CHANNEL_ID) -> None:
+def upload_image_to_slack(fname: str, token: str = TOKEN, channel_id: str = CHANNEL_ID) -> None:
     files = {'file': open(fname, 'rb')}
     param = {'token': token, 'channels': channel_id}
     res = requests.post(

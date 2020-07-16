@@ -3,7 +3,7 @@ from datetime import datetime
 import os
 # import attr
 from typing import List, Dict
-from helper import Action, load_yaml, Browser, upload_image
+from helper import Action, load_yaml, Browser, upload_image_to_slack
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.action_chains import ActionChains
 YAML_FNAME = "hoge.yaml"
@@ -95,7 +95,8 @@ class UIChecker:
             self.save_dir, f"{self.count}_{self.page_name}.png")
         print("screenshot:{}".format(fname))
         self.driver.save_screenshot(fname)
-        upload_image(fname)
+        #
+        upload_image_to_slack(fname)
 
 
 if __name__ == "__main__":
