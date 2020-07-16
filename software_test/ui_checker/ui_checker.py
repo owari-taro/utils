@@ -13,6 +13,7 @@ YAML_FNAME = "hoge.yaml"
 class UIChecker:
     def __init__(self):
         # save_dir = attr.ib(init=None)
+        #driver is set at exe method
         self.driver = None  # webdriver.Chrome(DRIVER_PATH)
         self.count = 0
         today = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -26,6 +27,15 @@ class UIChecker:
         # self.save_dir = f"/tmp/{today}"
 
     def exe(self, yaml_fname: str = YAML_FNAME):
+        """
+        load a yamle file which is written how selenium works,
+        then activate selenium accordingly.
+
+        Parameters
+        ----------
+        yaml_fname : str, optional
+            [description], by default YAML_FNAME
+        """        
         yaml: Dict = load_yaml(yaml_fname)
         settings = yaml.pop("settings")
         self.set_browser_driver(
