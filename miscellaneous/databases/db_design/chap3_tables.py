@@ -5,6 +5,7 @@ from sqlalchemy.orm import relationship, backref
 from datetime import datetime, timedelta
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy_repr import RepresentableBase
+from sqlalchemy.schema import UniqueConstraint
 
 
 # https://pypi.org/project/sqlalchemy-repr/
@@ -19,17 +20,12 @@ class Branch(Base):
     created_at = Column(DateTime(), default=datetime.utcnow)
     updated_at = Column(DateTime(), default=datetime.utcnow,
                         onupdate=datetime.utcnow)
-    # slack通知用。nullの場合は通知がとばないです！
-   # slack_token = Column(String(512))
-   # webhook_url = Column(String(512))
-   # channel_id = Column(String(256))
-   ## slack_notified_at = Column(DateTime())
 
 
 class Store(Base):
     __tablename__ = "store"
-    id=Clumn(Integer(),primary_key=True)
-    store_id = Column(Integer(),ForeignKey("store.id"))
+    id = Clumn(Integer(), primary_key=True)
+    store_id = Column(Integer(), ForeignKey("store.id"))
     # ex:fuel,jqueryなど
     branch_id = Column(Integer(), ForeignKey("branch.id"),
                        nullable=False)
@@ -38,13 +34,16 @@ class Store(Base):
     updated_at = Column(DateTime(), default=datetime.utcnow,
                         onupdate=datetime.utcnow)
 
+    __table_args__ = (UniqueConstraint(
+        "store_id", "branch_id", name="constraint"))
+
     # githubのurlの一部分
     #url_path = Column(String(512), nullable=False, unique=True)
 
 
 class Product(Base):
     __tablename__ = "product"
-    store_id = Column(Integer(), primary_key=True)
+    id = Column(Integer(), primary_key=True)
     # ex:fuel,jqueryなど
     name = Column(String(256), nullable=False, unique=True)
     category_id = Column(Integer(), nullable=False, ForeignKey("category.id"))
@@ -64,11 +63,14 @@ class Category(Base):
 
 class BranchProduct(Base):
     __tablename__ = "branch_product"
-    id=Column(Integer(),primary_key=True)
+    id = Column(Integer(), primary_key=True)
     branch_id = Column(Integer(), nullable=False, ForeignKey("branch.id"))
     store_id = Column(Integer(), nullable=False, ForeignKey("store.id"))
     product_id = Column(Integer(), nullable=False, ForeignKey("product.id"))
     created_at = Column(DateTime(), default=datetime.utcnow)
     updated_at = Column(DateTime(), default=datetime.utcnow,
                         onupdate=datetime.utcnow)
-    #TODO:write constraing
+    __table_args__ = (UniqueConstraint(
+        "branch_id", "store_id", "product_id", name="constraint"))
+
+    # TODO:write constraing
