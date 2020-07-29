@@ -24,10 +24,9 @@ class Branch(Base):
 
 class Store(Base):
     __tablename__ = "store"
-    id = Clumn(Integer(), primary_key=True)
-    store_id = Column(Integer(), ForeignKey("store.id"))
-    # ex:fuel,jqueryなど
-    branch_id = Column(Integer(), ForeignKey("branch.id"),
+    #id = Clumn(Integer(), primary_key=True)
+    store_id = Column(Integer(), primary_key=True,ForeignKey("store.id"))
+    branch_id = Column(Integer(),primary_key=True, ForeignKey("branch.id"),
                        nullable=False)
     name = Column(String(256), nullable=False, unique=True)
     created_at = Column(DateTime(), default=datetime.utcnow)
@@ -63,10 +62,10 @@ class Category(Base):
 
 class BranchProduct(Base):
     __tablename__ = "branch_product"
-    id = Column(Integer(), primary_key=True)
-    branch_id = Column(Integer(), nullable=False, ForeignKey("branch.id"))
-    store_id = Column(Integer(), nullable=False, ForeignKey("store.id"))
-    product_id = Column(Integer(), nullable=False, ForeignKey("product.id"))
+    #id = Column(Integer(), primary_key=True)
+    branch_id = Column(Integer(), nullable=False,primary_key=True ,ForeignKey("branch.id"))
+    store_id = Column(Integer(), nullable=False, primary_key=True,ForeignKey("store.id"))
+    product_id = Column(Integer(), nullable=False, primary_key=True,ForeignKey("product.id"))
     created_at = Column(DateTime(), default=datetime.utcnow)
     updated_at = Column(DateTime(), default=datetime.utcnow,
                         onupdate=datetime.utcnow)
