@@ -1,0 +1,27 @@
+#run 
+sudo docker container run hello-world
+
+#show  images
+ sudo docker container ls 
+ #show all including exited
+ sudo docker container ls -a
+ 
+ ##remove imave
+ sudo docker container rm name1 name2
+ #only return container id
+ sudo docker container ls -a --queit
+ 
+ 
+ #?? if you fotget option,type this
+ sudo docker container ls --help
+ 
+ 
+ #see logs
+ sudo docker container logs <name>
+ 
+ 
+ #remove allsudo docker container rm $(sudo docker container ls -aq)
+ 
+ 
+ #show images
+ sudo docker images
