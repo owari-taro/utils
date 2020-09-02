@@ -5,3 +5,5 @@ sudo systemctl start docker
 
 ## example
 sudo docker container run hello-world  
+#-d represents running coutainer in background
+sudo docker container run -d --name hoge1 --p 8080:80 httpd
