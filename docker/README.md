@@ -17,7 +17,12 @@ sudo docker volume create --name mysqlvolume
 
 
 
-## netowkr  
+## network  
 sudo docker network ls
 sudo docker container run  -name hoge -p 8080:80 httpd  
 sudo docker cointaner inspect hoge
+
+sudo docker network create my-network  
+sudo docker network inspect my-network  
+sudo docker container run --name hoge -d -p 8080:80 --net my-network httpd  
+sudo docker network inspect my-network
