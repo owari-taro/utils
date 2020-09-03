@@ -5,9 +5,19 @@ sudo systemctl start docker
 
 ## example
 sudo docker container run hello-world  
-#-d represents running coutainer in background
+#-d represents running coutainer in background  
 sudo docker container run -d --name hoge1 --p 8080:80 httpd  
-#remove
-sudo docker container rm hoge1
-#if you wanto see logs
+#remove  
+sudo docker container rm hoge1  
+#if you wanto see logs 
 sudo docker container logs hoge1 -f
+
+#create volume  
+sudo docker volume create --name mysqlvolume
+
+
+
+## netowkr  
+sudo docker network ls
+sudo docker container run  -name hoge -p 8080:80 httpd  
+sudo docker cointaner inspect hoge
