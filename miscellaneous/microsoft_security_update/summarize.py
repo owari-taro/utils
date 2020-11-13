@@ -28,11 +28,11 @@ def load_file(fname:str)->None:
         header=next(reader)
         for row in csv_reader:
             print(row)
-            article_id=row[4]
+            article_id=row[5]
             product=row[1]
             cve_id=row[-2]
-            impact=row[3]
-            download=row[5]
+            impact=row[4]
+            download=row[6]
             score=row[-1]
             element_dict.setdefault(article_id,Element(article_id,product,download))
             element_dict[article_id].score.add(score)
