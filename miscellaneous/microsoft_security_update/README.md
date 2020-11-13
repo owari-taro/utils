@@ -1,4 +1,4 @@
-
+microsoft_securityアップデートのエクセルファイルを整形するためのコード
 # how to use?
 
 ## (1)excelファイルを[ダウンロード](https://msrc.microsoft.com/update-guide/ja-jp)
