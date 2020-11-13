@@ -8,6 +8,7 @@
 ※xlsx形式を選択。(csvとxlsx形式でなぜだか微妙に各セルの値が違うため)
 
 ## (2)python実行
+ダウンロードしてきたxlsxのパスを↓のようにしてして実行する。
 ```
 pip install openpyxl
 #下記を実行するとOUTPUTフォルダに、xlsxの内容を整形したcsvが出力される
