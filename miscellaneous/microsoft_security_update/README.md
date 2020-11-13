@@ -1,7 +1,7 @@
 
 # how to use?
 
-## (1)excelファイルをダウンロード  
+## (1)excelファイルを[ダウンロード](https://msrc.microsoft.com/update-guide/ja-jp)
 
 ![image](https://github.com/owari-taro/utils/blob/master/miscellaneous/microsoft_security_update/images/screen_shot.png)
 ![image](https://github.com/owari-taro/utils/blob/master/miscellaneous/microsoft_security_update/images/screen_shot(2).png)
