@@ -4,11 +4,14 @@ autopep8==1.5.3
 certifi==2020.4.5.1
 chardet==3.0.4
 colorama==0.4.3
+et-xmlfile==1.0.1
 flake8==3.8.3
 idna==2.9
 isort==4.3.21
+jdcal==1.4.1
 lazy-object-proxy==1.4.3
 mccabe==0.6.1
+openpyxl==3.0.5
 pycodestyle==2.6.0
 pyflakes==2.2.0
 pylint==2.5.3
